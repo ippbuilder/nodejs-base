@@ -30,3 +30,15 @@ RUN buildDeps='xz-utils' \
     && tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 \
     && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
     && apt-get purge -y --auto-remove $buildDeps
+
+RUN mkdir -p /usr/src/app \
+    && npm install newrelic \
+    && npm install async
+    
+ADD wrapper.sh /usr/bin/wrapper
+Add docker-entrypoint.sh /entrypoint.sh
+ADD conf/newrelic.ini /usr/local/etc/php/conf.d/
+RUN chmod +x /usr/bin/wrapper /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["nodejs"]

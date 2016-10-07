@@ -2,6 +2,8 @@ FROM debian:jessie
 MAINTAINER MOHSEN@IPROPERTY
 ENV DEBIAN_FRONTEND noninteractive
 
+# install the dependencies we need
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 #install nodejs
 ENV NPM_CONFIG_LOGLEVEL info

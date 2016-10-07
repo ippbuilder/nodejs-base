@@ -1,8 +1,7 @@
 FROM debian:jessie
 MAINTAINER MOHSEN@IPROPERTY
 ENV DEBIAN_FRONTEND noninteractive
-ENV NR_INSTALL_SILENT true
-ENV NEWRELIC_LICENSE **None**
+
 
 #install nodejs
 ENV NPM_CONFIG_LOGLEVEL info
@@ -33,10 +32,6 @@ RUN buildDeps='xz-utils' \
     && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
     && apt-get purge -y --auto-remove $buildDeps
 
-RUN mkdir -p /usr/src/app \
-    && npm install newrelic \
-    && npm install async
-    
 ADD wrapper.sh /usr/bin/wrapper
 Add entrypoint.sh /entrypoint.sh
 ADD conf/newrelic.ini /usr/local/etc/php/conf.d/newrelic.ini

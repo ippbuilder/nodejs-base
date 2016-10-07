@@ -1,0 +1,9 @@
+FROM ipropertygroup/nodejs-base:latest 
+
+COPY . /usr/src/app/
+WORKDIR /usr/src/app
+
+RUN npm install
+#RUN /usr/bin/wrapper 500  node socket-script.js
+#RUN timeout 120s npm test
+#RUN npm test

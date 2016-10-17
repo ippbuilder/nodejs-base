@@ -3,18 +3,6 @@ set -e
 
 if [[ "$1" == node ]] || [ "$1" == nodejs ]; 
 then
-  echo "Selecting configuration based on environment ..."
-    if [ "${CAENV}" = "production" ]
-    then 
-      mv .env.production .env
-      echo "Production configs are set."
-    elif [ "${CAENV}" = "staging" ]
-    then 
-      mv .env.staging .env
-      echo "Staging configs are set."
-    else
-      echo "Environment veriable is not set! Task aborted."
-    fi
   echo "Setting up Newrelic configs ..."
     if [ "${NEWRELIC_LICENSE}" != "**None**" ]
     then
